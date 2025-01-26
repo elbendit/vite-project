@@ -3,14 +3,9 @@ import { superValidate, message } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
+import { schema } from '$lib/schemas/schema.js';
 
-const schema = z.object({
-	sede: z.enum(['', 'CENTRAL', 'MARTIRES', 'ELENA LARA'], 
-		{ message: 'Seleccione una sede' }).refine(sede => sede !== '', 
-			{ message: 'Seleccione una sede' }),
-	name: z.string().min(2, 'Escriba bieb'),
-	email: z.string().email()
-});
+
 
 
 export const load: PageServerLoad = async () => {
