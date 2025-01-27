@@ -8,9 +8,8 @@
 	const { form, errors, message, enhance } = superForm(data.form);
 </script>
 
-<!--
+
 	<SuperDebug data={$form} />
--->
 <h3>Superforms testing ground - Zod</h3>
 
 {#if $message}
@@ -555,8 +554,397 @@
 		{/if}
 	</fieldset>
 
-	<!-- Presento discapacidad / Consumo algun medicamento -->
-	 
+	<!-- Discapacidades -->
+	<fieldset>
+		<legend>Presente discapacidad</legend>
+		<div class="disability-options">
+		  {#each ['Física', 'Auditiva L. Señas', 'Auditiva Castellano Oral', 'Sordoceguera', 'Intelectual', 'Psicosocial', 'Múltiple'] as option}
+			<label>
+			  {option}
+			  <input
+				type="checkbox"
+				name="discapacidad"
+				value={option}
+				bind:group={$form.discapacidad}
+			  />
+			</label>
+		  {/each}
+		</div>
+		{#if $errors.discapacidad}
+		  <span class="error">{$errors.discapacidad}</span>
+		{/if}
+	  </fieldset>
+	
+	  <!-- Enfermedad Diagnosticada -->
+	  <fieldset>
+		<legend>Presente enfermedad diagnosticada</legend>
+		<label>
+		  No
+		  <input
+			type="radio"
+			name="enfermedadDiagnosticada"
+			value="no"
+			bind:group={$form.enfermedadDiagnosticada}
+		  />
+		</label>
+		<label>
+		  Sí
+		  <input
+			type="radio"
+			name="enfermedadDiagnosticada"
+			value="sí"
+			bind:group={$form.enfermedadDiagnosticada}
+		  />
+		</label>
+		<label>
+		  ¿Cuál?
+		  <input
+			type="text"
+			name="cualEnfermedad"
+			bind:value={$form.cualEnfermedad}
+		  />
+		</label>
+		{#if $errors.enfermedadDiagnosticada}
+		  <span class="error">{$errors.enfermedadDiagnosticada}</span>
+		{/if}
+	  </fieldset>
+	
+	  <!-- Tratamiento Médico -->
+	  <fieldset>
+		<legend>Recibo tratamiento médico</legend>
+		<label>
+		  No
+		  <input
+			type="radio"
+			name="tratamientoMedico"
+			value="no"
+			bind:group={$form.tratamientoMedico}
+		  />
+		</label>
+		<label>
+		  Sí
+		  <input
+			type="radio"
+			name="tratamientoMedico"
+			value="sí"
+			bind:group={$form.tratamientoMedico}
+		  />
+		</label>
+		<label>
+		  ¿Cuál?
+		  <input
+			type="text"
+			name="cualTratamiento"
+			bind:value={$form.cualTratamiento}
+		  />
+		</label>
+		{#if $errors.tratamientoMedico}
+		  <span class="error">{$errors.tratamientoMedico}</span>
+		{/if}
+	  </fieldset>
+	
+	  <!-- Consumo de Medicamento -->
+	  <fieldset>
+		<legend>Consumo algún medicamento</legend>
+		<label>
+		  No
+		  <input
+			type="radio"
+			name="consumoMedicamento"
+			value="no"
+			bind:group={$form.consumoMedicamento}
+		  />
+		</label>
+		<label>
+		  Sí
+		  <input
+			type="radio"
+			name="consumoMedicamento"
+			value="sí"
+			bind:group={$form.consumoMedicamento}
+		  />
+		</label>
+		<label>
+		  Describa:
+		  <input
+			type="text"
+			name="describeMedicamento"
+			bind:value={$form.describeMedicamento}
+		  />
+		</label>
+		{#if $errors.consumoMedicamento}
+		  <span class="error">{$errors.consumoMedicamento}</span>
+		{/if}
+	  </fieldset>
+
+	  <!-- Identificación -->
+  <fieldset>
+    <legend>Marco donde me identifico o corresponda:</legend>
+    <div class="identificacion-options">
+      {#each [
+        'Com. Blanca', 'Com. Mestiza', 'Com. Rural', 'Afrocolombianidad',
+        'Grupo Indígenas', 'Comunidad LGTBI', 'Desplazado',
+        'Víctima Conflicto Armado', 'Hijo de Desmovilizado',
+        'Asentamiento Subnormal', 'Asistido Fundación / ICBF'
+      ] as option}
+        <label>
+          {option}
+          <input
+            type="checkbox"
+            name="identificacion"
+            value={option}
+            bind:group={$form.identificacion}
+          />
+        </label>
+      {/each}
+    </div>
+    {#if $errors.identificacion}
+      <span class="error">{$errors.identificacion}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Educación Complementaria -->
+  <fieldset>
+    <legend>Recibo educación complementaria (Cursos, Inglés, Informática, Música, Danzas...):</legend>
+    <label>
+      No
+      <input
+        type="radio"
+        name="educacionComplementaria"
+        value="no"
+        bind:group={$form.educacionComplementaria}
+      />
+    </label>
+    <label>
+      Sí
+      <input
+        type="radio"
+        name="educacionComplementaria"
+        value="sí"
+        bind:group={$form.educacionComplementaria}
+      />
+    </label>
+    <label>
+      Describa:
+      <input
+        type="text"
+        name="describeEducacion"
+        bind:value={$form.describeEducacion}
+      />
+    </label>
+    <label>
+      Días:
+      <input
+        type="text"
+        name="diasEducacion"
+        bind:value={$form.diasEducacion}
+      />
+    </label>
+    <label>
+      Horario:
+      <input
+        type="text"
+        name="horarioEducacion"
+        bind:value={$form.horarioEducacion}
+      />
+    </label>
+    {#if $errors.educacionComplementaria}
+      <span class="error">{$errors.educacionComplementaria}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Entrenamiento Deportivo -->
+  <fieldset>
+    <legend>Asisto a entrenamiento deportivo:</legend>
+    <label>
+      No
+      <input
+        type="radio"
+        name="entrenamientoDeportivo"
+        value="no"
+        bind:group={$form.entrenamientoDeportivo}
+      />
+    </label>
+    <label>
+      Sí
+      <input
+        type="radio"
+        name="entrenamientoDeportivo"
+        value="sí"
+        bind:group={$form.entrenamientoDeportivo}
+      />
+    </label>
+    <label>
+      Deporte:
+      <input
+        type="text"
+        name="deporte"
+        bind:value={$form.deporte}
+      />
+    </label>
+    <label>
+      Días:
+      <input
+        type="text"
+        name="diasDeporte"
+        bind:value={$form.diasDeporte}
+      />
+    </label>
+    <label>
+      Horario:
+      <input
+        type="text"
+        name="horarioDeporte"
+        bind:value={$form.horarioDeporte}
+      />
+    </label>
+    {#if $errors.entrenamientoDeportivo}
+      <span class="error">{$errors.entrenamientoDeportivo}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Joven Trabajador -->
+  <fieldset>
+    <legend>Soy joven trabajador:</legend>
+    <label>
+      No
+      <input
+        type="radio"
+        name="jovenTrabajador"
+        value="no"
+        bind:group={$form.jovenTrabajador}
+      />
+    </label>
+    <label>
+      Sí
+      <input
+        type="radio"
+        name="jovenTrabajador"
+        value="sí"
+        bind:group={$form.jovenTrabajador}
+      />
+    </label>
+    <label>
+      Ocupación:
+      <input
+        type="text"
+        name="ocupacion"
+        bind:value={$form.ocupacion}
+      />
+    </label>
+    <label>
+      Días:
+      <input
+        type="text"
+        name="diasTrabajo"
+        bind:value={$form.diasTrabajo}
+      />
+    </label>
+    <label>
+      Horario:
+      <input
+        type="text"
+        name="horarioTrabajo"
+        bind:value={$form.horarioTrabajo}
+      />
+    </label>
+    {#if $errors.jovenTrabajador}
+      <span class="error">{$errors.jovenTrabajador}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Jornada Contraria -->
+  <fieldset>
+    <legend>En la jornada contraria normalmente me acompañan:</legend>
+    <div class="checkbox-group">
+      {#each ['Hermanos', 'Uno de mis padres', 'Familiares', 'Otros no familiares', 'Normalmente, permanezco solo'] as option}
+        <label>
+          {option}
+          <input
+            type="checkbox"
+            name="jornadaContraria"
+            value={option}
+            bind:group={$form.jornadaContraria}
+          />
+        </label>
+      {/each}
+    </div>
+    {#if $errors.jornadaContraria}
+      <span class="error">{$errors.jornadaContraria}</span>
+    {/if}
+  </fieldset>
+
+  <!-- En Casa Cuento Con -->
+  <fieldset>
+    <legend>En casa cuento con:</legend>
+    <div class="checkbox-group">
+      {#each [
+        'Computador', 'Internet', 'T.V. Suscripción', 'Celular Personal',
+        'Servicios públicos (Agua, luz, alcantar.)'
+      ] as option}
+        <label>
+          {option}
+          <input
+            type="checkbox"
+            name="enCasaCuentoCon"
+            value={option}
+            bind:group={$form.enCasaCuentoCon}
+          />
+        </label>
+      {/each}
+    </div>
+    {#if $errors.enCasaCuentoCon}
+      <span class="error">{$errors.enCasaCuentoCon}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Transporte al Colegio -->
+  <fieldset>
+    <legend>Me transporto al colegio en:</legend>
+    <div class="checkbox-group">
+      {#each [
+        'Servicio Público', 'Vehículo familiar', 'Bicicleta', 'Motocicleta personal',
+        'Caminando', 'Pago Ruta'
+      ] as option}
+        <label>
+          {option}
+          <input
+            type="checkbox"
+            name="meTransporto"
+            value={option}
+            bind:group={$form.meTransporto}
+          />
+        </label>
+      {/each}
+    </div>
+    {#if $errors.meTransporto}
+      <span class="error">{$errors.meTransporto}</span>
+    {/if}
+  </fieldset>
+
+  <!-- Expreso Excepcionalidad -->
+  <fieldset>
+    <legend>Expreso excepcionalidad demostrable en:</legend>
+    <div class="checkbox-group">
+      {#each [
+        'Tecnología', 'Liderazgo Social', 'Ciencias de la Naturaleza',
+        'Artes y letras', 'Actividad Física', 'Cienc. Sociales y Hum.'
+      ] as option}
+        <label>
+          {option}
+          <input
+            type="checkbox"
+            name="expresoExcepcionalidad"
+            value={option}
+            bind:group={$form.expresoExcepcionalidad}
+          />
+        </label>
+      {/each}
+    </div>
+    {#if $errors.expresoExcepcionalidad}
+      <span class="error">{$errors.expresoExcepcionalidad}</span>
+    {/if}
+  </fieldset>
 
 	<button>Submit</button>
 </form>
@@ -566,6 +954,7 @@
 <style>
 	.invalid {
 		color: red;
+		font-size: 0.875rem;
 	}
 
 	.status {

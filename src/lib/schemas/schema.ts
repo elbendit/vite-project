@@ -54,11 +54,41 @@ export const schema = z.object({
 
   //en casa vivo con
   enCasaVivoCon: z.array(z.string()).min(1, { message: "Debe seleccionar al menos una opción." }),
-    otro: z.string().optional(),
-    hijoUnico: z.boolean(),
-    tieneHermanosEnColegio: z.boolean(),
-    totalPersonasHogar: z.number().min(1, { message: "Debe indicar el total de personas." }),
-    miCasaEs: z.enum(["Propia", "Arrendada", "De familiares"], {
-      required_error: "Debe seleccionar el tipo de casa."
-    }),
+  otro: z.string().optional(),
+  hijoUnico: z.boolean(),
+  tieneHermanosEnColegio: z.boolean(),
+  totalPersonasHogar: z.number().min(1, { message: "Debe indicar el total de personas." }),
+  miCasaEs: z.enum(["Propia", "Arrendada", "De familiares"], {
+    required_error: "Debe seleccionar el tipo de casa."
+  }),
+
+  //ESTADO DE SALUD
+  discapacidad: z.array(z.string()).optional(),
+  enfermedadDiagnosticada: z.enum(['no', 'sí']),
+  cualEnfermedad: z.string().optional(),
+  tratamientoMedico: z.enum(['no', 'sí']),
+  cualTratamiento: z.string().optional(),
+  consumoMedicamento: z.enum(['no', 'sí']),
+  describeMedicamento: z.string().optional(),
+
+  //Donde me identifico
+  identificacion: z.array(z.string()).optional(),
+  educacionComplementaria: z.enum(['no', 'sí']),
+  describeEducacion: z.string().optional(),
+  diasEducacion: z.string().optional(),
+  horarioEducacion: z.string().optional(),
+  entrenamientoDeportivo: z.enum(['no', 'sí']),
+  deporte: z.string().optional(),
+  diasDeporte: z.string().optional(),
+  horarioDeporte: z.string().optional(),
+  jovenTrabajador: z.enum(['no', 'sí']),
+  ocupacion: z.string().optional(),
+  diasTrabajo: z.string().optional(),
+  horarioTrabajo: z.string().optional(),
+
+  //Jornada contraria
+  jornadaContraria: z.array(z.string()).optional(),
+  enCasaCuentoCon: z.array(z.string()).optional(),
+  meTransporto: z.array(z.string()).optional(),
+  expresoExcepcionalidad: z.array(z.string()).optional()
 });
