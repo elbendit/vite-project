@@ -50,5 +50,15 @@ export const schema = z.object({
   ingresos: z.enum(
     ["Menos de un salario mínimo", "Entre 1 y 2 salarios", "Más de 2 salarios mínimos"],
     { required_error: "Seleccione un rango de ingresos." }
-  )
+  ),
+
+  //en casa vivo con
+  enCasaVivoCon: z.array(z.string()).min(1, { message: "Debe seleccionar al menos una opción." }),
+    otro: z.string().optional(),
+    hijoUnico: z.boolean(),
+    tieneHermanosEnColegio: z.boolean(),
+    totalPersonasHogar: z.number().min(1, { message: "Debe indicar el total de personas." }),
+    miCasaEs: z.enum(["Propia", "Arrendada", "De familiares"], {
+      required_error: "Debe seleccionar el tipo de casa."
+    }),
 });
